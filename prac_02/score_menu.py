@@ -18,7 +18,9 @@ def main():
         elif selection == 'R':
             print(f"A score of {score} is {determine_performance(score)}.")
         elif selection == 'P':
-            print("*" * score)
+            for i in range(score // 10):
+                print("*" * 10)
+            print("*" * (score % 10))
         else:
             print("Invalid selection")
         print(MENU)
