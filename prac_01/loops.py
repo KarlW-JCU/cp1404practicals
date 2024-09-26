@@ -23,6 +23,6 @@ print()
 # d. print n lines of increasing stars. Using the same number as above,
 # print lines of increasing stars, starting at 1 with no blank line.
 # E.g., if the user entered 4, your single loop should print:
-for i in range(number_of_stars):
-    print((i+1) * "*")
+for i in range(1, number_of_stars+1):
+    print((i) * "*")
 print()
