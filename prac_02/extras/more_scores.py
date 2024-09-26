@@ -1,5 +1,5 @@
 """
-Random score recording program
+Random score generating/recording program
 """
 
 from random import randint
