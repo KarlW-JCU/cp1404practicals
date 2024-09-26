@@ -1,24 +1,28 @@
 """
 Simple password program
+Get a password with minimum length and display asterisks of password length
 """
 
-MIN_LENGTH = 8
+MINIMUM_LENGTH = 8
 
 
 def main():
+    """Get and print password in asterisks."""
     password = get_password()
-    print_stars(password)
+    print_asterisks(password)
 
 
 def get_password():
+    """Get password of valid minimum length."""
     password = input("Password: ")
-    while len(password) < MIN_LENGTH:
-        print(f"Password must be at least {MIN_LENGTH} characters long.")
+    while len(password) < MINIMUM_LENGTH:
+        print(f"Password must be at least {MINIMUM_LENGTH} characters long.")
         password = input("Password: ")
     return password
 
 
-def print_stars(string):
+def print_asterisks(string):
+    """Print length of string number of asterisks."""
     print("Password: ", "*" * len(string), sep='')
 
 
