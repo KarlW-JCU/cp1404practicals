@@ -1,4 +1,6 @@
-"""Simple password program"""
+"""
+Simple password program
+"""
 
 MIN_LENGTH = 8
 
