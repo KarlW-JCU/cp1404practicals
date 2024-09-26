@@ -11,6 +11,7 @@ MAXIMUM_DEATHS = 0.25
 
 
 def main():
+    """Get species name and initial population then simulate for 10 years."""
     population = []
     species = input('Species Name: ').title()
     print(f"Welcome to the {species} Population Simulator!")

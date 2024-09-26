@@ -6,6 +6,7 @@ from random import randint
 
 
 def main():
+    """Randomise a number of scores then record score and performance to file."""
     scores = []
     number_of_scores = int(input("Number of scores: "))
     for i in range(number_of_scores):
@@ -18,6 +19,7 @@ def main():
 
 
 def determine_performance(score):
+    """Return threshold-based score performance."""
     if score >= 90:
         return "Excellent"
     elif score >= 50:
