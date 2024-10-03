@@ -8,12 +8,12 @@ The price should be displayed to the nearest cent (e.g. $33.59, not $33.59182329
 """
 import random
 
-MAX_INCREASE = 0.175  # 17.5%
-MAX_DECREASE = 0.05  # 5%
-MIN_PRICE = 1.00
-MAX_PRICE = 100.00
-INITIAL_PRICE = 10.00
-FILENAME = 'stock_prices.txt'
+MAX_INCREASE = random.randint(5, 10)/100
+MAX_DECREASE = random.randint(5, 10)/100
+MIN_PRICE = random.uniform(0, 10)
+MAX_PRICE = random.randrange(100, 1000, 100)
+INITIAL_PRICE = random.randint(10, 100)
+FILENAME = 'random_stock_prices.txt'
 
 out_file = open(FILENAME, 'w')
 price = INITIAL_PRICE
