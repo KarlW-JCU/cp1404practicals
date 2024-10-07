@@ -1,21 +1,32 @@
 """
 CP1404/CP5632 - Practical
 Random word generator - based on format of words
-
-Another way to get just consonants would be to use string.ascii_lowercase
-(all letters) and remove the vowels.
 """
 import random
 
 VOWELS = "aeiou"
 CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 
-word_format = "ccvcvvc"
+print("Random Word Generator!\n"
+      "Enter a word with 'Wildcards' to generate a new word!\n"
+      "Valid Wildcards:\n"
+      "[%]Consonants\n"
+      "[#]Vowels\n"
+      "[*]Random\n")
+
+word_format = input("Enter a word format: ").lower()
 word = ""
-for kind in word_format:
-    if kind == "c":
+for character in word_format:
+    if character == "%":
         word += random.choice(CONSONANTS)
-    else:
+    elif character == "#":
         word += random.choice(VOWELS)
+    elif character == "*":
+        if random.random() < 0.5:
+            word += random.choice(CONSONANTS)
+        else:
+            word += random.choice(VOWELS)
+    else:
+        word += character
 
 print(word)
