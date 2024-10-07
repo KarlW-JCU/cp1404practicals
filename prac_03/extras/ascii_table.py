@@ -1,4 +1,4 @@
-"""Simple ASCII convertor."""
+"""ASCII program."""
 
 MENU = ("[1]ASCII to Value\n"
         "[2]Value to ASCII\n"
@@ -23,7 +23,12 @@ def main():
             else:
                 print_character(value)
         elif selection == '3':
-            print_ascii_table()
+            try:
+                number_of_columns = int(input("Table columns: "))
+            except ValueError:
+                print("Invalid input: Non Integer.")
+            else:
+                print_ascii_table(number_of_columns)
         else:
             print("Invalid selection.")
         print(MENU)
@@ -45,9 +50,12 @@ def print_character(value):
         print(f"The character for {value} is: {chr(value)}")
 
 
-def print_ascii_table():
-    for i in range(CHARACTER_LIMIT[0], CHARACTER_LIMIT[1] + 1):
-        print(f"{i:>3} {chr(i)}")
+def print_ascii_table(number_of_columns):
+    column_limit = (CHARACTER_LIMIT[1] - CHARACTER_LIMIT[0]) // number_of_columns + 1
+    for i in range(CHARACTER_LIMIT[0], CHARACTER_LIMIT[0] + column_limit):
+        for j in range(0, number_of_columns):
+            print(f"{i + j * column_limit:>3} {chr(i + j * column_limit)} ", end="")
+        print()
 
 
 main()
