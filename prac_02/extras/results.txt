@@ -1,0 +1,10 @@
+96 is Excellent
+82 is Passable
+100 is Excellent
+95 is Excellent
+62 is Passable
+94 is Excellent
+47 is Bad
+79 is Passable
+28 is Bad
+50 is Passable
