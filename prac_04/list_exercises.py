@@ -14,12 +14,8 @@ print(f"The first number is {numbers[0]}\n"
 
 usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface', 'BaseStdIn',
              'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer', 'bob']
-is_match = False
-user = input("Enter username: ")
-for username in usernames:
-    if username == user:
-        is_match = True
-if is_match:
+username = input("Enter username: ")
+if username in usernames:
     print(f"Access Granted!")
 else:
     print(f"Access Denied!")

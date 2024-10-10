@@ -11,8 +11,8 @@ def main():
 
 def load_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
-    input_file = open(FILENAME)
     data = []
+    input_file = open(FILENAME)
     for line in input_file:
         line = line.strip()
         parts = line.split(',')
@@ -25,7 +25,7 @@ def load_data():
 def print_details(data):
     """Print data formatted like: subject,lecturer,number of students."""
     for item in data:
-        print(f"{item[0]} is taught by {item[1]} and has {item[2]} students.")
+        print(f"{item[0]} is taught by {item[1]:>12} and has {item[2]:3} students.")
 
 
 main()

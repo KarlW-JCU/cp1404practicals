@@ -5,8 +5,11 @@ from random import randint
 VALID_NUMBERS = tuple(range(1, 46))
 NUMBER_OF_NUMBERS = 6
 
-# number_of_quick_picks = int(input('How many quick picks? '))
-number_of_quick_picks = 10
+number_of_quick_picks = int(input('How many quick picks? '))
+while number_of_quick_picks < 0:
+    print('Please enter a positive number.')
+    number_of_quick_picks = int(input('How many quick picks? '))
+
 for i in range(number_of_quick_picks):
     quick_pick = []
     while len(quick_pick) < NUMBER_OF_NUMBERS:
