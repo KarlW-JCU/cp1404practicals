@@ -12,7 +12,14 @@ print("Random Word Generator!\n"
       "[#]Vowels\n"
       "[*]Random\n")
 
-word_format = input("Enter a word format: ").lower()
+is_valid = False
+while not is_valid:
+    word_format = input("Enter a word format: ").lower()
+    invalid_characters = [character for character in word_format if character not in CONSONANTS + VOWELS + "%#*"]
+    if len(invalid_characters) > 0:
+        print(f"Invalid characters: {" ".join(invalid_characters)}")
+    else:
+        is_valid = True
 word = ""
 for character in word_format:
     if character == "%":
