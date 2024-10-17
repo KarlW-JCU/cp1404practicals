@@ -1,37 +1,64 @@
-"""
-Wimbledon champions program.
-Estimate: 30 minutes
-Actual:   35 minutes
-"""
+"""Wimbledon champions program."""
 
 from operator import itemgetter
 
 FILE = "..\\wimbledon.csv"
+MENU = """Wimbledon Records.
+[1]Champions!
+[2]Finals Losses.
+[3]Countries.
+[9]Summary.
+[0]Exit."""
 
 
 def main():
-    """Print summary of Wimbledon champions and their countries."""
+    """Print selected summaries of Wimbledon champions and their countries."""
     data = read_file()
     champion_to_wins = assign_champion_to_wins(data)
     champion_to_losses = assign_champion_to_losses(data)
     countries = count_countries(data)
-    display_summary(champion_to_wins, champion_to_losses, countries)
+    print(MENU)
+    selection = input(">>> ")
+    while selection != "0":
+        if selection == "1":
+            display_champions(champion_to_wins)
+        elif selection == "2":
+            display_losses(champion_to_losses)
+        elif selection == "3":
+            display_countries(countries)
+        elif selection == "9":
+            display_champions(champion_to_wins)
+            display_losses(champion_to_losses)
+            display_countries(countries)
+        else:
+            print("Invalid selection.")
+        print(MENU)
+        selection = input(">>> ")
 
 
-def display_summary(champion_to_wins, champion_to_losses, countries):
-    """Print summary of champions, number of wins, countries that have won."""
-    print("Wimbledon Champions:")
-    for champion, score in sorted(champion_to_wins.items(), key=itemgetter(1), reverse=True):
-        print(champion, score)
-    print()
+def display_countries(countries):
+    """Display sorted list of countries by number of finalists."""
     print(f"These {len(countries)} have won Wimbledon:")
     for country, number_of_players in sorted(countries.items(), key=itemgetter(1), reverse=True):
         print(f"{country}:{number_of_players}", end="; ")
     print()
-    print()
-    print("Wimbledon Losses:")
+    print("-" * 20)
+
+
+def display_losses(champion_to_losses):
+    """Print sorted list of game losses."""
+    print("Wimbledon Finals Losses:")
     for champion, score in sorted(champion_to_losses.items(), key=itemgetter(1), reverse=True):
         print(champion, score)
+    print("-" * 20)
+
+
+def display_champions(champion_to_wins):
+    """Print sorted list table of champions."""
+    print("Wimbledon Champions:")
+    for champion, score in sorted(champion_to_wins.items(), key=itemgetter(1), reverse=True):
+        print(champion, score)
+    print("-" * 20)
 
 
 def count_countries(data):
