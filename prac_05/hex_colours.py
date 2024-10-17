@@ -11,7 +11,7 @@ colour_to_hex_lower = {key.lower(): COLOUR_TO_HEX[key] for key in COLOUR_TO_HEX.
 colour = input("Select Colour: ").lower().replace(" ", "")
 while colour != "":
     try:
-        print(f"Hex: {colour_to_hex_lower[colour]}")
+        print(f"Hex: {colour_to_hex_lower[colour]}")  # ignore pycharm warning
     except KeyError:
         print("Colour Not Found.")
     colour = input("Select Colour: ").lower().replace(" ", "")
