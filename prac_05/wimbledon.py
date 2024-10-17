@@ -1,17 +1,19 @@
 """
-Wimbledon champions program.
+Wimbledon records program.
 Estimate: 30 minutes
 Actual:   35 minutes
 """
 
-FILE = "wimbledon.csv"
+FILENAME = "wimbledon.csv"
+INDEX_COUNTRY = 1
+INDEX_CHAMPION = 2
 
 
 def main():
-    """Print summary of Wimbledon champions and their countries."""
-    data = read_file()
-    champion_to_wins = assign_champion_to_wins(data)
-    countries = get_unique_countries(data)
+    """Read file and print Wimbledon details."""
+    records = read_file(FILENAME)
+    champion_to_wins = assign_champion_to_wins(records)
+    countries = get_unique_countries(records)
     display_summary(champion_to_wins, countries)
 
 
@@ -27,7 +29,7 @@ def display_summary(champion_to_wins, countries):
 
 def get_unique_countries(data):
     """Return set of unique countries."""
-    countries = {line.split('"')[0].split(',')[1] for line in data}
+    countries = {line[INDEX_COUNTRY] for line in data}
     return countries
 
 
@@ -36,18 +38,21 @@ def assign_champion_to_wins(data):
     champion_to_wins = {}
     for line in data:
         try:
-            champion_to_wins[line.split('"')[0].split(',')[2]] += 1
+            champion_to_wins[line[INDEX_CHAMPION]] += 1
         except KeyError:
-            champion_to_wins[line.split('"')[0].split(',')[2]] = 1
+            champion_to_wins[line[INDEX_CHAMPION]] = 1
     return champion_to_wins
 
 
-def read_file():
-    """Return data from file in format: Year,Country,Champion,Country,Runner-up,Final Scores"""
-    with open(FILE, "r", encoding="utf-8-sig") as in_file:
-        in_file.readline()
-        data = in_file.read().splitlines()
-    return data
+def read_file(file):
+    """Return records from file in format: Year,Country,Champion,Country,Runner-up"""
+    records = []
+    with open(file, "r", encoding="utf-8-sig") as in_file:
+        in_file.readline()  # remove header
+        for line in in_file:
+            parts = line.strip().split(",")
+            records.append(parts)
+    return records
 
 
 main()

@@ -13,5 +13,5 @@ for word in string.split():
         word_to_count[word] = 1
 
 longest_word = max([len(word) for word in word_to_count.keys()])
-for item in sorted(word_to_count):
-    print(f"{item:<{longest_word}} : {word_to_count[item]:>2}")
+for word in sorted(word_to_count):
+    print(f"{word:<{longest_word}} : {word_to_count[word]:>2}")
