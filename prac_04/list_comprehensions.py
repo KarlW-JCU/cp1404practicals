@@ -44,5 +44,5 @@ numbers_greater_than_9 = [number for number in numbers if number > 9]
 print(numbers_greater_than_9)
 
 # create a string of the last names for those full names longer than 11 characters
-long_name_last_names = ", ".join([name.split()[1] for name in full_names if len(name) > 11])
-print(long_name_last_names)
+long_name_last_name = ", ".join([name.split()[1] for name in full_names if len(name) > 11])
+print(long_name_last_name)
