@@ -24,7 +24,7 @@ def display_summary(champion_to_wins, countries):
         print(champion, wins)
     print()
     print(f"These {len(countries)} have won Wimbledon:")
-    print(", ".join(countries))
+    print(", ".join(sorted(countries)))
 
 
 def get_unique_countries(data):
