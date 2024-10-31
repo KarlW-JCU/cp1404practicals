@@ -11,9 +11,9 @@ INDEX_CHAMPION = 2
 
 def main():
     """Read file and print Wimbledon details."""
-    records = read_file(FILENAME)
+    records = load_records(FILENAME)
     champion_to_wins = assign_champion_to_wins(records)
-    countries = get_unique_countries(records)
+    countries = filter_unique_countries(records)
     display_summary(champion_to_wins, countries)
 
 
@@ -27,24 +27,23 @@ def display_summary(champion_to_wins, countries):
     print(", ".join(sorted(countries)))
 
 
-def get_unique_countries(data):
+def filter_unique_countries(data):
     """Return set of unique countries."""
-    countries = {line[INDEX_COUNTRY] for line in data}
-    return countries
+    return {row[INDEX_COUNTRY] for row in data}
 
 
 def assign_champion_to_wins(data):
     """Return dictionary with champion name to number of wins."""
     champion_to_wins = {}
-    for line in data:
+    for row in data:
         try:
-            champion_to_wins[line[INDEX_CHAMPION]] += 1
+            champion_to_wins[row[INDEX_CHAMPION]] += 1
         except KeyError:
-            champion_to_wins[line[INDEX_CHAMPION]] = 1
+            champion_to_wins[row[INDEX_CHAMPION]] = 1
     return champion_to_wins
 
 
-def read_file(file):
+def load_records(file):
     """Return records from file in format: Year,Country,Champion,Country,Runner-up"""
     records = []
     with open(file, "r", encoding="utf-8-sig") as in_file:
