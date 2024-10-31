@@ -5,7 +5,7 @@ class ProgrammingLanguage:
     """Programming Language Class: name, typing, reflection, year."""
 
     def __init__(self, name="", typing="", reflection="", year=0):
-        """Construct a programming_language object."""
+        """Construct a programming language object."""
         self.name = name
         self.typing = typing
         self.reflection = reflection
@@ -17,6 +17,8 @@ class ProgrammingLanguage:
 
     def is_dynamic(self):
         """Determine if language is dynamic."""
-        if self.typing == "Dynamic":
-            return True
-        return False
+        return self.typing == "Dynamic"
+
+
+if __name__ == "__main__":
+    print(ProgrammingLanguage("Python", "Dynamic", "Yes", 1991))

@@ -1,4 +1,4 @@
-"""CP1404/CP5632 Practical - Car class example."""
+"""CP1404/CP5632 Practical - Car class."""
 
 
 class Car:
@@ -6,7 +6,7 @@ class Car:
 
     def __init__(self, name="", fuel=0):
         """Initialise a Car instance.
-
+        name: string, reference name for car
         fuel: float, one unit of fuel drives one kilometre
         """
         self.name = name
