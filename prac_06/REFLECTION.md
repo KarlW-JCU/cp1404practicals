@@ -3,26 +3,22 @@
 Write short but thoughtful answers to each of the following.  
 Replace each `...` with your meaningful answer.
 
-## What percentage of the lecture videos have you watched so far?
+## What have you changed about your process in this subject based on your personal reflection?
 
-100.0%
+Honestly, probably nothing.
 
-## What time, location and duration have you scheduled to watch lecture videos?
+## What do you still need to change in terms of your approach, application, time on task, attitude, etc.?
 
-Sunday
+Read whole tasks, and consider difficulty and timing, before starting attempts
 
 ## What are you doing well in the subject so far that you will keep doing?
 
-Complete weekly content, in order, EVERY week
+Complete all lectures, seminars, practicals, and extensions - in order - every week.
 
 ## What do you need to stop or change in your work for this subject overall so far?
 
-Read whole questions and take time to consider instructions
+May be worth revisiting topics throughout the week instead of completing all tasks in a single day.
 
-## What are you currently doing poorly for practicals in this subject that you will change?
+## What is one request you have or change you suggest for this subject and/or your IT degree overall?
 
-Proofread - just because it runs doesn't mean it is good code.
-
-## What are you doing really well for practicals in this subject?
-
-Complete all practice and extension activities
+More free pizza parties during seminars.

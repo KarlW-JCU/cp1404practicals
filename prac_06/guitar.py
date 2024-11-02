@@ -17,17 +17,17 @@ class Guitar:
         """Return guitar object summary."""
         return "{} ({}) : ${:,.2f}".format(self.name, self.year, self.cost)
 
-    def get_age(self):
+    def calculate_age(self):
         """Return guitar object age based on CURRENT_YEAR."""
         return CURRENT_YEAR - self.year
 
     def is_vintage(self):
         """Determine if guitar object is vintage."""
-        return self.get_age() > VINTAGE_AGE
+        return self.calculate_age() > VINTAGE_AGE
 
 
 if __name__ == "__main__":
     test_guitar = Guitar("Test", 1992, 12345.95)
     print(test_guitar)
-    print(test_guitar.get_age())
+    print(test_guitar.calculate_age())
     print(test_guitar.is_vintage())
