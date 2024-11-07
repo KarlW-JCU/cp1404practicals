@@ -16,7 +16,7 @@ class Project:
     def __str__(self):
         """Return project object summary."""
         return (f"{self.name}, Started: {self.start_date}, Priority: {self.priority}, "
-                f"Estimated Cost: {self.cost_estimate}, Completion Percentage: {self.completion_percentage}")
+                f"Estimated Cost: ${self.cost_estimate:.2f}, Completion Percentage: {self.completion_percentage}%")
 
     def __repr__(self):
         """Return developer object summary."""
