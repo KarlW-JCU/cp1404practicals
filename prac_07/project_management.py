@@ -1,7 +1,7 @@
 """
 Project Management Program
-Estimate: 120 minutes
-Actual:   1400
+Estimate: 60 minutes
+Actual:   120 minutes
 """
 
 import datetime
@@ -39,7 +39,7 @@ def main():
         elif selection == "A":
             add_project(projects)
         elif selection == "U":
-            pass
+            update_project(projects)
         else:
             print("Invalid selection.")
         print(MENU)
@@ -47,6 +47,24 @@ def main():
     confirm_save = input(f"Would you like to save to {filename}? ").upper()
     save_projects(confirm_save, filename, projects)
     print("Thank you for using custom-built project management software.")
+
+
+def update_project(projects):
+    """Update project completion percentage and priority."""
+    for i, project in enumerate(projects):
+        print(i, project)
+    try:
+        choice = int(input("Project Choice: "))
+        print(projects[choice])
+        try:
+            new_percentage = int(input("New Percentage: "))
+            new_priority = int(input("New Priority: "))
+            projects[choice].completion_percentage = new_percentage
+            projects[choice].priority = new_priority
+        except ValueError:
+            print("Invalid input.")
+    except ValueError:
+        print("Invalid choice.")
 
 
 def load_projects(filename):
@@ -83,7 +101,7 @@ def save_projects(confirm_save, filename, projects):
     """Write list of Project objects to file."""
     if confirm_save == "Y" or confirm_save == "YES":
         with open(filename, "w") as out_file:
-            print("Name Start Date	Priority	Cost Estimate	Completion Percentage", file=out_file)
+            print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=out_file)
             for project in projects:
                 print(
                     f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
@@ -104,8 +122,7 @@ def display_projects(projects):
 
 def filter_by_date(projects):
     """Print projects sorted by date, occurring after user defined date."""
-    date = input("Show projects that start after date (dd/mm/yyyy): ")
-    date = datetime.datetime.strptime(date, "%d/%m/%Y").date().strftime("%d/%m/%Y")
+    date = get_valid_date("Show projects that start after date")
     for project in sorted(projects, key=attrgetter("start_date")):
         if project.start_date >= date:
             print(project)
@@ -116,8 +133,7 @@ def add_project(projects):
     print("Let's add a new project!")
     try:
         name = input("Name: ")
-        date = input("Start date(dd/mm/yyyy): ")
-        date = datetime.datetime.strptime(date, "%d/%m/%Y").date().strftime("%d/%m/%Y")
+        date = get_valid_date("Start date")
         priority = int(input("Priority: "))
         cost = float(input("Estimated Cost: "))
         completion = float(input("Percent Complete: "))
@@ -125,6 +141,17 @@ def add_project(projects):
         projects.append(new_project)
     except ValueError:
         print("Invalid input, please try again.")
+
+
+def get_valid_date(prompt):
+    """Get date from user input matching format dd/mm/yyyy."""
+    while True:
+        try:
+            date = input(f"{prompt} (dd/mm/yyyy): ")
+            date = datetime.datetime.strptime(date, "%d/%m/%Y").date().strftime("%d/%m/%Y")
+            return date
+        except ValueError:
+            print("Invalid date.")
 
 
 main()
