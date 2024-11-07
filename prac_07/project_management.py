@@ -8,7 +8,13 @@ from prac_07.project import Project
 import datetime
 
 FILENAME = "projects.txt"
-MENU = """
+MENU = """- (L)oad projects  
+- (S)ave projects  
+- (D)isplay projects  
+- (F)ilter projects by date
+- (A)dd new project  
+- (U)pdate project
+- (Q)uit
 """
 
 
@@ -17,8 +23,14 @@ def main():
     print("Welcome to Pythonic Project Management")
     filename = FILENAME
     projects = load_projects(filename)
-    for project in projects:
-        print(project)
+    print(MENU)
+    selection = input(">>> ").upper()
+    while selection != "Q":
+        for project in projects:
+            print(project)
+        selection = input(">>> ").upper()
+    confirm_save = input(f"Would you like to save to {filename}? ").upper()
+    save_projects(confirm_save, filename, projects)
 
 
 def load_projects(filename):
@@ -29,7 +41,7 @@ def load_projects(filename):
         for line in in_file:
             parts = line.strip().split("\t")
             name = parts[0]
-            date = datetime.datetime.strptime(parts[1], "%d/%m/%Y").date()
+            date = datetime.datetime.strptime(parts[1], "%d/%m/%Y").date().strftime("%d/%m/%Y")
             priority = int(parts[2])
             cost_estimate = float(parts[3])
             completion = float(parts[4])
@@ -37,6 +49,17 @@ def load_projects(filename):
             projects.append(new_project)
     print(f"Loaded {len(projects)} projects from {filename}")
     return projects
+
+
+def save_projects(confirm_save, filename, projects):
+    """Write list of Project objects to file."""
+    if confirm_save == "Y" or confirm_save == "YES":
+        with open(filename, "w") as out_file:
+            print("Name Start Date	Priority	Cost Estimate	Completion Percentage", file=out_file)
+            for project in projects:
+                print(
+                    f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
+                    file=out_file)
 
 
 main()
