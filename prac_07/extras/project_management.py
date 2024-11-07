@@ -1,8 +1,4 @@
-"""
-Project Management Program
-Estimate: 60 minutes
-Actual:   120 minutes
-"""
+"""Project Management Program"""
 
 import datetime
 from operator import attrgetter
@@ -20,7 +16,7 @@ MENU = """- (L)oad projects
 
 
 def main():
-    """Load, View, Update, and Save project list using .CSV files."""
+    """Load, View, Update, and Save project list using pickling."""
     print("Welcome to Pythonic Project Management")
     filename = FILENAME
     projects = load_projects(filename)
