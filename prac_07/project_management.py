@@ -1,6 +1,6 @@
 """
 Project Management Program
-Estimate: 60 minutes
+Estimate: 120 minutes
 Actual:   1400
 """
 
@@ -26,11 +26,29 @@ def main():
     print(MENU)
     selection = input(">>> ").upper()
     while selection != "Q":
-        for project in projects:
-            print(project)
+        if selection == "L":
+            try:
+                filename = input("Projects File: ")
+                projects = load_projects(filename)
+            except FileNotFoundError:
+                print(f"Invalid <filename>: {filename}")
+        elif selection == "S":
+            pass
+        elif selection == "D":
+            pass
+        elif selection == "F":
+            pass
+        elif selection == "A":
+            pass
+        elif selection == "U":
+            pass
+        else:
+            print("Invalid selection.")
+        print(MENU)
         selection = input(">>> ").upper()
     confirm_save = input(f"Would you like to save to {filename}? ").upper()
     save_projects(confirm_save, filename, projects)
+    print("Thank you for using custom-built project management software.")
 
 
 def load_projects(filename):
