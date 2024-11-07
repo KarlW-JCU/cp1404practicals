@@ -26,6 +26,10 @@ class Project:
         """Determine if project has greater [lower value] priority than other project."""
         return self.priority < other.priority
 
+    def __ge__(self, other):
+        """Determine if project has start date on or after other date."""
+        return self.start_date >= other.start_date
+
 
 if __name__ == "__main__":
     test = Project("Build", "1/10/2020", 4, 12345.95, 42.5)

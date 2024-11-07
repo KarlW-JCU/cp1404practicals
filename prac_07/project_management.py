@@ -4,8 +4,9 @@ Estimate: 120 minutes
 Actual:   1400
 """
 
-from prac_07.project import Project
 import datetime
+from operator import attrgetter
+from prac_07.project import Project
 
 FILENAME = "projects.txt"
 MENU = """- (L)oad projects  
@@ -27,20 +28,14 @@ def main():
     selection = input(">>> ").upper()
     while selection != "Q":
         if selection == "L":
-            try:
-                filename = input("Projects File: ")
-                projects = load_projects(filename)
-            except FileNotFoundError:
-                print(f"Invalid filename: {filename}"
-                      f"Reverting to default: {FILENAME}")
-                filename = FILENAME
+            filename, projects = change_file(filename, projects)
         elif selection == "S":
             confirm_save = input(f"Would you like to save to {filename}? ").upper()
             save_projects(confirm_save, filename, projects)
         elif selection == "D":
             display_projects(projects)
         elif selection == "F":
-            pass
+            filter_by_date(projects)
         elif selection == "A":
             pass
         elif selection == "U":
@@ -72,6 +67,18 @@ def load_projects(filename):
     return projects
 
 
+def change_file(filename, projects):
+    """Set active filename from user input."""
+    try:
+        filename = input("Projects File: ")
+        projects = load_projects(filename)
+    except FileNotFoundError:
+        print(f"Invalid filename: {filename}\n"
+              f"Reverting to default: {FILENAME}")
+        filename = FILENAME
+    return filename, projects
+
+
 def save_projects(confirm_save, filename, projects):
     """Write list of Project objects to file."""
     if confirm_save == "Y" or confirm_save == "YES":
@@ -92,6 +99,15 @@ def display_projects(projects):
     print("Completed projects: ")
     for project in sorted(projects):
         if project.completion_percentage == 100.0:
+            print(project)
+
+
+def filter_by_date(projects):
+    """Print projects sorted by date, occurring after user defined date."""
+    date = input("Show projects that start after date (dd/mm/yyyy): ")
+    date = datetime.datetime.strptime(date, "%d/%m/%Y").date().strftime("%d/%m/%Y")
+    for project in sorted(projects, key=attrgetter("start_date")):
+        if project.start_date >= date:
             print(project)
 
 
