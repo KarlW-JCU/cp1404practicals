@@ -37,7 +37,7 @@ def main():
         elif selection == "F":
             filter_by_date(projects)
         elif selection == "A":
-            pass
+            add_project(projects)
         elif selection == "U":
             pass
         else:
@@ -109,6 +109,22 @@ def filter_by_date(projects):
     for project in sorted(projects, key=attrgetter("start_date")):
         if project.start_date >= date:
             print(project)
+
+
+def add_project(projects):
+    """Add new project to projects."""
+    print("Let's add a new project!")
+    try:
+        name = input("Name: ")
+        date = input("Start date(dd/mm/yyyy): ")
+        date = datetime.datetime.strptime(date, "%d/%m/%Y").date().strftime("%d/%m/%Y")
+        priority = int(input("Priority: "))
+        cost = float(input("Estimated Cost: "))
+        completion = float(input("Percent Complete: "))
+        new_project = Project(name, date, priority, cost, completion)
+        projects.append(new_project)
+    except ValueError:
+        print("Invalid input, please try again.")
 
 
 main()

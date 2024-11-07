@@ -36,4 +36,5 @@ if __name__ == "__main__":
     test2 = Project("Demolish", "10/6/2024", 1, 12345.95, 0.0)
     print(test)
     print(repr(test))
-    print(test < test2)
+    print(test < test2, "False")
+    print(test <= test2, "True")
