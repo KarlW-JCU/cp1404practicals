@@ -8,7 +8,7 @@ class Guitar:
     """Guitar class: name, year, cost."""
 
     def __init__(self, name="", year=0, cost=0.0):
-        """Construct guitar object."""
+        """Construct Guitar object."""
         self.name = name
         self.year = year
         self.cost = cost
