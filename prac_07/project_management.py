@@ -31,11 +31,14 @@ def main():
                 filename = input("Projects File: ")
                 projects = load_projects(filename)
             except FileNotFoundError:
-                print(f"Invalid <filename>: {filename}")
+                print(f"Invalid filename: {filename}"
+                      f"Reverting to default: {FILENAME}")
+                filename = FILENAME
         elif selection == "S":
-            pass
+            confirm_save = input(f"Would you like to save to {filename}? ").upper()
+            save_projects(confirm_save, filename, projects)
         elif selection == "D":
-            pass
+            display_projects(projects)
         elif selection == "F":
             pass
         elif selection == "A":
@@ -78,6 +81,18 @@ def save_projects(confirm_save, filename, projects):
                 print(
                     f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
                     file=out_file)
+
+
+def display_projects(projects):
+    """Print projects sorted by priority and completion."""
+    print("Incomplete projects: ")
+    for project in sorted(projects):
+        if project.completion_percentage != 100.0:
+            print(project)
+    print("Completed projects: ")
+    for project in sorted(projects):
+        if project.completion_percentage == 100.0:
+            print(project)
 
 
 main()

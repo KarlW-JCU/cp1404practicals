@@ -15,15 +15,21 @@ class Project:
 
     def __str__(self):
         """Return project object summary."""
-        return (f"{self.name}, Started: {self.start_date}, Priority: {self.priority}, "
-                f"Estimated Cost: ${self.cost_estimate:.2f}, Completion Percentage: {self.completion_percentage}%")
+        return (f"{self.name}, Start: {self.start_date}, Priority {self.priority}, "
+                f"Estimated Cost: ${self.cost_estimate:.2f}, Completion {self.completion_percentage}%")
 
     def __repr__(self):
         """Return developer object summary."""
         return f"{vars(self)}"
 
+    def __lt__(self, other):
+        """Determine if project has greater [lower value] priority than other project."""
+        return self.priority < other.priority
+
 
 if __name__ == "__main__":
-    test = Project("Build", "1/10/2020", 0, 12345.95, 42.5)
+    test = Project("Build", "1/10/2020", 4, 12345.95, 42.5)
+    test2 = Project("Demolish", "10/6/2024", 1, 12345.95, 0.0)
     print(test)
     print(repr(test))
+    print(test < test2)
