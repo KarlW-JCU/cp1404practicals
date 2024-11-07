@@ -12,6 +12,6 @@ for word in string.split():
     except KeyError:
         word_to_count[word] = 1
 
-longest_word = max([len(word) for word in word_to_count.keys()])
+max_word_length = max((len(word) for word in word_to_count.keys()))
 for word in sorted(word_to_count):
-    print(f"{word:<{longest_word}} : {word_to_count[word]:>2}")
+    print(f"{word:<{max_word_length}} : {word_to_count[word]:>2}")
