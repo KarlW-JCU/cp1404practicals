@@ -14,7 +14,7 @@ class ConvertMilesKm(App):
     output_km = StringProperty()
 
     def build(self):
-        """"""
+        """Build Kivy GUI."""
         Window.size = (400, 200)
         self.title = "Convert Miles to Kilometres"
         self.root = Builder.load_file("convert_miles_km.kv")
