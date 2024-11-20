@@ -1,0 +1,31 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            size_hint_x: 0.8
+            id: input_miles
+            multiline: False
+            text: app.input_miles
+            font_size: 48
+            on_text: app.handle_convert(input_miles.text)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.2
+            Button:
+                text: 'Up'
+                font_size: 24
+                on_press: app.handle_increment(input_miles.text, 1)
+            Button:
+                text: 'Down'
+                font_size: 24
+                on_press: app.handle_increment(input_miles.text, -1)
+#    Button:
+#        text: 'Convert'
+#        font_size: 24
+#        on_press: app.handle_convert(input_miles.text)
+    Label:
+        id: output_km
+        text: app.output_km
+        font_size: 48
+        color: (1, 1, 0, 1)
