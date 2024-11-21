@@ -25,6 +25,8 @@ def main():
         except AttributeError:
             pass
         if selection == "C":
+            print("Taxis Available:")
+            display_taxis()
             current_taxi = select_taxi(current_taxi)
         elif selection == "D":
             fare = drive_taxi(current_taxi)
@@ -42,8 +44,6 @@ def main():
 
 def select_taxi(current_taxi):
     """Change current taxi to user choice."""
-    print("Taxis Available:")
-    display_taxis()
     try:
         taxi_number = int(input("Enter your choice: "))
         try:
@@ -56,10 +56,11 @@ def select_taxi(current_taxi):
 
 def drive_taxi(current_taxi):
     """Drive current taxi user defined distance."""
-    if current_taxi is None:
+    if not current_taxi:
         print("You need to choose a taxi before you can drive.")
         return 0
     else:
+        current_taxi.start_fare()
         drive_distance = float(input("Drive how far? "))
         distance_driven = current_taxi.drive(drive_distance)
         print(f"Distance driven: {distance_driven}")

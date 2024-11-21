@@ -17,4 +17,5 @@ class UnreliableCar(Car):
         """Drive object given distance if reliability greater than random percentage."""
         if uniform(0, 100) < self.reliability:
             super().drive(distance)
-        return distance
+            return distance
+        return 0

@@ -10,6 +10,7 @@ class SilverService(Taxi):
     def __init__(self, fanciness=0.0, **kwargs):
         """Construct Silver Service (Taxi) object."""
         super().__init__(**kwargs)
+        self.fanciness = fanciness
         self.price_per_km *= fanciness
 
     def __str__(self):
