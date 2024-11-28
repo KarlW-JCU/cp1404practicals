@@ -9,7 +9,7 @@ from prac_09.car import Car
 
 def repeat_string(s, n):
     """Repeat string s, n times, with spaces in between."""
-    return " ".join([s for i in range(n)])
+    return " ".join([s] * n)
 
 
 def is_long_word(word, length=5):
@@ -37,25 +37,29 @@ def run_tests():
     # this should pass (no output)
     car = Car()
     assert car._odometer == 0, "Car does not set odometer correctly"
-    # Note that Car's __init__ function sets the fuel in one of two ways:
-    # using the value passed in or the default
-    # You should test both of these
+    # write assert statements to show if Car sets the fuel correctly
     assert car.fuel == 0, "Car does not set fuel correctly"
     car = Car(fuel=10)
     assert car.fuel == 10, "Car does not set fuel correctly"
 
 
-# run_tests()
+run_tests()
 
-# doctest.testmod()
+doctest.testmod()
 
 
-# TODO: 5. Write and test a function to format a phrase as a sentence,
+# write and test a function to format a phrase as a sentence,
 # starting with a capital and ending with a single full stop.
-# Important: start with a function header and just use pass as the body
-# then add doctests for 3 tests:
-#   'hello' -> 'Hello.'
-#   'It is an ex parrot.' -> 'It is an ex parrot.'
-# and one more that you decide is a useful test.
-# Run your doctests and watch the tests fail.
-# Then write the body of the function so that the tests pass.
+
+def phrase_to_sentence(phrase):
+    """
+    >>> phrase_to_sentence('hello')
+    'Hello.'
+    >>> phrase_to_sentence('It is an ex parrot.')
+    'It is an ex parrot.'
+    >>> phrase_to_sentence('bananananana')
+    'Bananananana.'
+    """
+    sentence = phrase.capitalize()
+    sentence = f"{sentence}." if sentence[-1] != "." else sentence
+    return sentence
